@@ -6,7 +6,7 @@ module NewRelic
           begin
             log.debug "Processing instrumentation file '#{file}'"
             require file.to_s
-          rescue => e
+          rescue Exception => e
             log.error "Error loading instrumentation file '#{file}': #{e}"
             log.debug e.backtrace.join("\n")
           end
@@ -32,7 +32,7 @@ module NewRelic
           @instrumentation_files << pattern
         end
       end
-      
+
       def install_instrumentation
         _install_instrumentation
       end
